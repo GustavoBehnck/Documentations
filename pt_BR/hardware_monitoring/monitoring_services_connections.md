@@ -68,11 +68,11 @@ sudo systemctl restart prometheus
 
 Agora, ao entrar no painel do [Prometheus][prometheus_doc] e acessando o painel `Targets` com na imagem a seguir:
 
-![accessing_targes_page](../images/accessing_targets_prometheus.png)
+![accessing_targes_page](./images/accessing_targets_prometheus.png)
 
 Deve ser possível ver as máquinas conectadas ao seu [Prometheus][prometheus_doc], como na seguinte imagem:
 
-![prometheus_targets_page](../images/prometheus_targets_page.png)
+![prometheus_targets_page](./images/prometheus_targets_page.png)
 
 ## Usando o Grafana com o Prometheus
 
@@ -87,7 +87,7 @@ Já no painel do [Grafana][grafana_doc], siga as seguintes etapas para a conexã
   3. Digite o nome que deseja utilizar para sua `Data source`
   4. Na parte de `Connection` ou `HTTP -> URL` digite seu endereço do [Prometheus][prometheus_doc], em nosso caso será `http://laser03.hpc.univap:9090`
   5. Vá ao final da página e clique na opção `Save & test`, após isso, deverá aparecer a seguinte mensagem na tela:
-  ![save_data_source](../images/Save_grafana_datasource.png)
+  ![save_data_source](./images/Save_grafana_datasource.png)
 
 > [!TIP]
 > Se houve alguma mensagem de erro, isso pode ser por vários motivos, principalmente por bloqueios na comunicação entre os serviços (certifique-se de que as configurações de `firewall` estejam corretas na documentação [firewall-cmd][firewall_doc]).

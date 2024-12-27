@@ -90,7 +90,7 @@ Se estiver instalando em um servidor, é preciso habilitar a porta `9100` ou o s
 
 No nosso exemplo, estamos usando a máquina `laser03.hpc.univap` que está configurada no DNS, acessando a URL `http://laser03.hpc.univap:9100`, deve ser possível acessar o painel do [Node Exporter][node_exporter], assim como na imagem a seguir:
 
-![Node_Exporter_home_page](../images/Node_Exporter_Home_Page.png)
+![Node_Exporter_home_page](./images/Node_Exporter_Home_Page.png)
 
 Agora o [Node Exporter][node_exporter] já deve estar pronto para o uso, para configurá-lo com o [Prometheus][prometheus], utilize a documentação de [conexão dos serviços de monitoramento](./monitoring_services_connections.md), lá é passado como configurar as conexões entre todos esses serviços de monitoramento de hardware.
 

@@ -95,7 +95,7 @@ Se estiver instalando em um servidor, é preciso habilitar a porta `3000` ou o s
 
 No nosso exemplo, estamos usando a máquina `laser03.hpc.univap` que está configurada no DNS, acessando a URL `http://laser03.hpc.univap:3000`, deve ser possível acessar o painel do [Grafana][grafana], assim como na imagem a seguir:
 
-![grafana_image](../images/Grafana_Login.png?raw=true "Title")
+![grafana_image](./images/Grafana_Login.png?raw=true "Title")
 
 ### Mudar Senha do Painel do Grafana
 
@@ -105,7 +105,7 @@ Em seguida aparecerá no painel a opção de trocar a senha de root, apenas digi
 
 Após deverá o painel do [Grafana][grafana] já pronto para o uso, como na imagem a seguir:
 
-![grafana_home_page](../images/Grafana_Home_Page.png)
+![grafana_home_page](./images/Grafana_Home_Page.png)
 
 Certo, se tudo fluiu corretamente, painel do [Grafana][grafana] já deve estar pronto para o uso.
 

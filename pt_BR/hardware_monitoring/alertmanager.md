@@ -1,13 +1,13 @@
 # **Instalação e Configurações Básicas do Alertmanager**
 
 - [**Instalação e Configurações Básicas do Alertmanager**](#instalação-e-configurações-básicas-do-alertmanager)
-- [Descrição](#descrição)
-- [Instalação do Alertmanager](#instalação-do-alertmanager)
-  - [Configuração do Epel](#configuração-do-epel)
-  - [Instalação](#instalação)
-- [Configurações Básicas](#configurações-básicas)
-  - [Ativação do Serviço](#ativação-do-serviço)
-  - [Acesso ao Painel do Node Exporter](#acesso-ao-painel-do-node-exporter)
+  - [Descrição](#descrição)
+  - [Instalação do Alertmanager](#instalação-do-alertmanager)
+    - [Configuração do Epel](#configuração-do-epel)
+    - [Instalação](#instalação)
+  - [Configurações Básicas](#configurações-básicas)
+    - [Ativação do Serviço](#ativação-do-serviço)
+    - [Acesso ao Painel do Node Exporter](#acesso-ao-painel-do-node-exporter)
 
 ## Descrição
 
@@ -90,7 +90,7 @@ Se estiver instalando em um servidor, é preciso habilitar a porta `9093` ou o s
 
 No nosso exemplo, estamos usando a máquina `laser03.hpc.univap` que está configurada no DNS, acessando a URL `http://laser03.hpc.univap:9093`, deve ser possível acessar o painel do [Alertmanager][alertmanager], assim como na imagem a seguir:
 
-![alertmanager_home_page](../images/Alertmanager_Home_Page.png)
+![alertmanager_home_page](./images/Alertmanager_Home_Page.png)
 
 Agora o [Alertmanager][alertmanager] já deve estar pronto para o uso, para configurá-lo com o [Prometheus][prometheus], utilize a documentação de [conexão dos serviços de monitoramento](./monitoring_services_connections.md), lá é passado como configurar as conexões entre todos esses serviços de monitoramento de hardware.
 

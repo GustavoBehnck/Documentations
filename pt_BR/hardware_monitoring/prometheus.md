@@ -94,7 +94,7 @@ Se estiver instalando em um servidor, é preciso habilitar a porta `9090` ou o s
 
 No nosso exemplo, estamos usando a máquina `laser03.hpc.univap` que está configurada no DNS, acessando a URL `http://laser03.hpc.univap:9090`, deve ser possível acessar o painel do [Prometheus][prometheus], assim como na imagem a seguir:
 
-![Prometheus_home_page](../images/Prometheus_Home_Page.png)
+![Prometheus_home_page](./images/Prometheus_Home_Page.png)
 
 ### Arquivos de Configuração
 
