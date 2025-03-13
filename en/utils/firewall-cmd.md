@@ -9,19 +9,19 @@
   - [Services](#services)
     - [Removing Services](#removing-services)
     - [List Available Services in the System](#list-available-services-in-the-system)
-    - [Adding a Service Open to your Firewall](#adding-a-service-open-to-your-firewall)
+    - [Adding a Service to your Firewall](#adding-a-service-to-your-firewall)
     - [Creating a Custom Service](#creating-a-custom-service)
   - [Ports](#ports)
-    - [Adição de Portas](#adição-de-portas)
-    - [Remoção de Portas](#remoção-de-portas)
-  - [Zonas](#zonas)
-    - [Descrição](#descrição)
-    - [Criação de zonas](#criação-de-zonas)
-    - [Execução de comandos em uma zona](#execução-de-comandos-em-uma-zona)
-    - [Ativação de zonas](#ativação-de-zonas)
-      - [Adição de uma `inteface`](#adição-de-uma-inteface)
-      - [Adição de um `source`](#adição-de-um-source)
-    - [Remoção de zonas](#remoção-de-zonas)
+    - [Adding a Port to your Firewall](#adding-a-port-to-your-firewall)
+    - [Removing a Port from your Firewall](#removing-a-port-from-your-firewall)
+  - [Zones](#zones)
+    - [Description](#description-1)
+    - [Creating Zones](#creating-zones)
+    - [Executing Commands in a Zone](#executing-commands-in-a-zone)
+    - [Activation of a Zone](#activation-of-a-zone)
+      - [How to Add a Interface to a Zone](#how-to-add-a-interface-to-a-zone)
+      - [How to Add a Source to a Zone](#how-to-add-a-source-to-a-zone)
+    - [Deleting a Zone from `firewall-cmd`](#deleting-a-zone-from-firewall-cmd)
 
 ## Description
 
@@ -93,7 +93,7 @@ ls /usr/lib/firewalld/services
 
 The output should be a list of `.xml` files available by default in [Rocky 9.3][rocky], which are already usable.
 
-### Adding a Service Open to your Firewall
+### Adding a Service to your Firewall
 ***
 To add a service to the firewall, first check if it exists, as in the previous step.
 
@@ -131,146 +131,155 @@ sudo firewall-cmd --reload
 
 ## Ports
 
-### Adição de Portas
+### Adding a Port to your Firewall
 ***
-Não apenas os arquivos de serviços podem liberar portas no firewall, também é possível fazer isso diretamente pelo `firewall-cmd`.
+Not only can service open ports in the firewall, but it is also possible to do it directly using `firewall-cmd`.
 
-Para adicionar uma porta ou mais, utilize um dos conjuntos de exemplo abaixo:
+To add one or more ports, use one of the example sets below:
 
 ```bash
-sudo firewall-cmd --add-port={3001/tcp,9090/udp} --permanent  #Coloque a porta e o protocolo de cada um (porta/protocolo)
+sudo firewall-cmd --add-port={3001/tcp,9090/udp} --permanent  #Change the port and protocol according to your needs.
 sudo firewall-cmd --reload
 ```
 
 ```bash
-sudo firewall-cmd --add-port=3001/tcp #Coloque a porta e o protocolo
-sudo firewall-cmd --add-port=9090/udp #Coloque a porta e o protocolo
-sudo firewall-cmd --runtime-to-permanent #Salva as configurações aplicadas permanentemente
+sudo firewall-cmd --add-port=3001/tcp
+sudo firewall-cmd --add-port=9090/udp
+sudo firewall-cmd --runtime-to-permanent #Save current changes permanently
 sudo firewall-cmd --reload
 ```
 
-### Remoção de Portas
+### Removing a Port from your Firewall
 
-Para adicionar uma porta ou mais, utilize um dos conjuntos de exemplo abaixo:
+To remove one or more ports from your firewall, use one of the two examples below:
 
 ```bash
-sudo firewall-cmd --remove-port={3001/tcp,9090/udp} --permanent  #Coloque a porta e o protocolo de cada um (porta/protocolo)
+sudo firewall-cmd --remove-port={3001/tcp,9090/udp} --permanent  #Change the port and protocol according to your needs.
 sudo firewall-cmd --reload
 ```
 
 ```bash
-sudo firewall-cmd --remove-port=3001/tcp #Coloque a porta e o protocolo
-sudo firewall-cmd --remove-port=9090/udp #Coloque a porta e o protocolo
-sudo firewall-cmd --runtime-to-permanent #Salva as configurações aplicadas permanentemente
+sudo firewall-cmd --remove-port=3001/tcp
+sudo firewall-cmd --remove-port=9090/udp
+sudo firewall-cmd --runtime-to-permanent #Save current changes permanently
 sudo firewall-cmd --reload
 ```
 
 
-## Zonas
+## Zones
 
-### Descrição
+### Description
 ***
-No `firewall-cmd` já existe por padrão diversas zonas, elas são usadas para atribuir diferentes configurações de permissões de firewall para ocasiões específicas. Por exemplo, a zona `trusted`, por padrão, é aplicada a todos de sua rede, ou seja, se estiver em uma rede `/15`, todos as máquinas `/15` da rede estarão suscetíveis a essa zona.
+In `firewall-cmd`, there are several zones that exist by default. These zones are used to assign different firewall permission configurations for specific situations. For example, the `trusted` zone is applied by default to everyone on your local network, meaning that if you are on a `/24` network, all machines in the same `/24` subnet will fall under this zone.
 
-Para listar todas as zonas atuais use o comando abaixo:
+To list all current zones, use the command below:
 
 ```bash
 sudo firewall-cmd --get-zones
 ```
 
-Porém, nem todas as zonas existentes estão ativas, para listar as zonas ativas utilize o comando abaixo:
+However, not all existing zones are active. To list the active zones, use the command below:
 
 ```bash
 sudo firewall-cmd --get-active-zones
 ```
 
-### Criação de zonas 
+### Creating Zones 
 ***
-Para se criar uma zona, use o comando abaixo:
+To create a zone, use the following command:
 
 ```bash
-sudo firewall-cmd --permanent --new-zone=zone_teste #Troque pelo nome de sua escolha
+sudo firewall-cmd --permanent --new-zone=test_zone #Change the name of the zone as you want
 sudo firewall-cmd --reload
 ```
 
-### Execução de comandos em uma zona
+### Executing Commands in a Zone
 ***
-É possível especificar qual zona você deseja utilizar um comando do `firewall-cmd`.
+It is possible to specify which zone you want to use a `firewall-cmd` command on.
 
-Para isso utilize a seguinte sintaxe abaixo:
+To do this, use the following syntax below:
 
 ```bash
-sudo firewall-cmd --zone=<nome da zona> <comando>
+sudo firewall-cmd --zone=<zone name> <command (flags)>
 ```
 
-Como por exemplo, para listar todas as configurações de uma zona, utilize o seguinte comando
+For example, to list all configurations of a zone, use the following command:
 
 ```bash
-sudo firewall-cmd --zone=zone_teste --list-all
+sudo firewall-cmd --zone=test_zone --list-all
 ```
 
-### Ativação de zonas 
+### Activation of a Zone
 ***
-> [!IMPORTANT]
-> Se estiver ativando uma zona em outra máquina através de SSH, é passível de se configurá-la para o seu tipo de conexão sem o serviço de `ssh`, ou seja, você não poderá mais fazer conexões ssh para a máquina novamente.
+> [!WARNING]
+> If you are activating a zone on another machine via SSH, it is possible to configure it for your type of connection without the `ssh` service, meaning you will not be able to establish SSH connections to the machine again.
 > 
-> Certifique-se de adicionar o serviço nas configurações dessa zona ou verificar se essas serão aplicadas para sua conexão.
+> "If this new zone applys to your connection, ensure that you add the `ssh` service before activating it.
 
-Para se ativar uma zona, é preciso atribuir uma `interface` ou um `source` para ela. Se atribuir uma inteface por exemplo, as configurações de firewall serão aplicadas a qualquer conexão feita por essa interface.
+To activate a zone, you need to assign an interface or a source to it. For example, if you assign an interface, the firewall configurations will be applied to any connection made through that interface.
 
-#### Adição de uma `inteface`
+#### How to Add a Interface to a Zone
 
-Para atribuir uma inteface a uma zona, utilize o comando abaixo:
+To assign an interface to a zone, use the command below:
 
 ```bash
-sudo firewall-cmd --permanent --zone=zone_teste --add-interface=enp3s0 #Verifique suas intefaces de rede e troque para seu caso
+sudo firewall-cmd --permanent --zone=test_zone --add-interface=enp3s0 #Change the zone name and the interface in your system
 ```
 
 > [!TIP]
-> Se não souber suas intefaces de rede, use o comando `nmcli device show | grep DEVICE` para lista-las:
+> If you don't know the available inteface in your system, use the command below to list them:
+> ```shell
+> nmcli device show | grep -i DEVICE
+> ```
 
-#### Adição de um `source`
+#### How to Add a Source to a Zone
 
-No caso do `source`, é possível apenas aplicar uma faixa de IP para aplicar apenas a ela, como no exemplo a seguir:
+When adding a source to your zone, you can apply a subnet mask, or even specify a direct IP or MAC address.
+
+Here a some examples:
 
 ```bash
-sudo firewall-cmd --permanent --zone=zone_teste --add-source=10.1.250.0/24 #Mude para faixa de IP que desejar
+sudo firewall-cmd --permanent --zone=test_zone --add-source=192.168.1.0/24 #A subnet mask
+sudo firewall-cmd --reload
+```
+```bash
+sudo firewall-cmd --permanent --zone=test_zone --add-source={192.168.1.150,0f:cc:47:c6:c4:5f} #A IP or MAC address
 sudo firewall-cmd --reload
 ```
 
-Além de uma faixa de IP, também é possível adicinar um IPv4 ou IPv6 em específico. Se desejar, poderá até colocar um único MacAdress.
-
-
-### Remoção de zonas
+### Deleting a Zone from `firewall-cmd`
 ***
-Após criar uma zona personalizada, seu arquivo de configuração `.xml` deverá estar no caminho `/etc/firewalld/zones`
+After creating a custom zone, its `.xml` configuration file should be located in the `/etc/firewalld/zones/`.
 
 > [!NOTE]
-> É necessário permissão de root para modificações nessa pasta
->  
-> Além disso, o local pode mudar de discribuição para discribuição, portanto, verifique se não for o seu caso.
+> Remember that you need sudo permissions to access this directory.
+>
+> If you want to list the zones, log in as root and use the command below:
+> ```bash
+> ls /etc/firewalld/zones/
+> ```
 
-É possível listar as zonas criadas com o seguinte comando:
+There are 2 ways to delete a zone, you can firt use the flag `--delete-zone=`, as the following:
 
 ```bash
-sudo ls /etc/firewalld/zones
+sudo firewall-cmd --delete-zone=test_zone --permanent #Remember to change the name according to your zone
+sudo firewall-cmd --reload
 ```
+
+Or you can manually delete the zone file as shown below.
 
 > [!TIP]
-> É recomandado fazer um backup da zona antes de deletá-la.
-> Para isso execute o seguinte comando:
+> It is recommended to back up the zone before deleting it.
+> 
+> To do this, execute the following command:
 > ```bash
-> cp /etc/firewalld/zones/zona_teste.xml /etc/firewalld/zones/zona_teste.xml.old
-> #lembre-se de trocar pelo nome de sua zona
+> cp /etc/firewalld/zones/test_zone.xml /etc/firewalld/zones/test_zone.xml.old
+> #Change the zone name according to your situation.
 > ```
-> Se já exister um `zona_teste.xml.old` pode deletá-la
-
-Depois de verificar a zona que deseja deletar, utilize o seguinte comando para relizar a ação:
 
 ```bash
-sudo rm /etc/firewalld/zones/zona_teste.xml #troque pelo nome de sua zona
+sudo rm /etc/firewalld/zones/test_zone.xml #Change the zone name according to your situation.
 ```
-
 
 <!--- Links de documentação e referências  --->
 [rocky]:https://docs.rockylinux.org/release_notes/9_3/
