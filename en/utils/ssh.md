@@ -9,7 +9,7 @@
   - [Registering an SSH Key](#registering-an-ssh-key)
     - [Description](#description-1)
     - [Creating Authentication Keys](#creating-authentication-keys)
-    - [Registrando a chave](#registrando-a-chave)
+    - [Registering the public key](#registering-the-public-key)
     - [Configurando o arquivo `~/.ssh/config`](#configurando-o-arquivo-sshconfig)
     - [Executar apenas um comando com a chave](#executar-apenas-um-comando-com-a-chave)
 
@@ -118,18 +118,18 @@ The key's randomart image is:
 
 Now you should have two files: one key with the `.pub` extension, which is the public key, and one without an extension, which is the private key.
 
-### Registrando a chave
+### Registering the public key
 ***
-Para utilizar as chaves de autenticação no `ssh` é preciso que chave pública esteja registradas dentro do arquivo `~/.ssh/authorized_keys`, para isso é possível usar o comando `ssh-copy-id` para facilitar esse processo, para isso será necessário usar o nome de usuário, IP e o arquivo da chave privada, como no exemplo abaixo:
+To use authentication keys in `ssh`, the public key must be registered in the `~/.ssh/authorized_keys` file. To simplify this process, you can use the `ssh-copy-id` command. For this, you will need the username, IP, and private key file, as shown in the example below:
 
 ```bash
-ssh-copy-id -i chave.pub user@192.160.0.164
+ssh-copy-id -i key.pub user@192.160.0.164
 ```
 
 > [!IMPORTANT]
-> Certifique-se de utilizar a chave pública no comando acima, a privada não deve ser compartilhada para nenhuma outra máquina.
+> Make sure to use the public key in the command above. The private key should not be shared with any other machine.
 
-Depois de confirmar com a senha do usuário escolhido sua chave deverá estar dentro do arquivo `~/.ssh/authorized_keys`.
+After confirming with the chosen user's password, your key should be inside the `~/.ssh/authorized_keys` file of the other machine.
 
 ### Configurando o arquivo `~/.ssh/config`
 ***
