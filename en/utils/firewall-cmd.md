@@ -85,7 +85,7 @@ sudo firewall-cmd --reload
 
 ### List Available Services in the System
 ***
-Em seu sistema há uma diretório com todos os arquivos de serviços para utilização do `firewall-cmd`. No caso do [Rocky 9.3][rocky], é possível listar os serviços utilizando o seguinte comando:
+In your system, there is a directory with all the service files for use with `firewall-cmd`. In the case of [Rocky 9.3][rocky], you can list the services using the following command:
 
 ```bash
 ls /usr/lib/firewalld/services
@@ -236,7 +236,7 @@ sudo firewall-cmd --permanent --zone=test_zone --add-interface=enp3s0 #Change th
 
 When adding a source to your zone, you can apply a subnet mask, or even specify a direct IP or MAC address.
 
-Here a some examples:
+Here are some examples:
 
 ```bash
 sudo firewall-cmd --permanent --zone=test_zone --add-source=192.168.1.0/24 #A subnet mask
