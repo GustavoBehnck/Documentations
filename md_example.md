@@ -1,51 +1,63 @@
-# Titulo h1
+# Tittle h1
 
-## Titulo h2
+## Tittle h2
 
-### Titulo h3
+### Tittle h3
 
 <!-- COMENTÁRIO -->
 
-Adição de uma linha:
+New line:
 ***
 
 
-**Negrito**
-_Italico_
-~~Cortado~~
+**bond**
+_italic_
 
-Listas não ordenadas
+Unordered lists
 
-- 1
-  - dadada
-  - teadada
-- 2
-- 3
+- something 0
+  - something 1
+  - something 1
+- something 0
+- something 0
 
-Listas ordenadas
+Ordered lists
 
-1. adas
-2. asda
-3. asd
-4. asd
+1. something 0
+2. something 0
+   1. something 1
+   2. something 1
+3. something 0
+4. something 0
 
 ```python
 def f():
-    return b+a
+    return "Hellow, world!"
+
+print(f())
 ```
 
-a variavel `asdasd`
+```C
+#include <stdio.h>
 
-[Github][docs-grafana]
+int main() {
+    printf("Hello, world!\n");
+    return 0;
+}
+```
 
-[docs-grafana]: https://google.com
+normal text `marked text`
 
-| adsasd | disahdi |
-| ------ | ------- |
-| 1      | 2       |
-| asdasd | sdfsfd  |
+[Github][Git Hub]
 
-É possível formatar a tabela com o `Ctrl+Shift+i`
+[Git Hub]: https://github.com/GustavoBehnck/Documentations
+
+| head 0 | head 1 |
+| ------ | ------ |
+| x      | y      |
+| A      | B      |
+
+If you are in visual code (in linux) you can format the markdown file with `Ctrl+Shift+i`
 
 ```mermaid
 graph TD;
