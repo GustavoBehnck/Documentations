@@ -9,9 +9,9 @@
   - [Registering an SSH Key](#registering-an-ssh-key)
     - [Description](#description-1)
     - [Creating Authentication Keys](#creating-authentication-keys)
-    - [Registrando a chave](#registrando-a-chave)
-    - [Configurando o arquivo `~/.ssh/config`](#configurando-o-arquivo-sshconfig)
-    - [Executar apenas um comando com a chave](#executar-apenas-um-comando-com-a-chave)
+    - [Registering a SSH key](#registering-a-ssh-key)
+    - [Configuring the `~/.ssh/config` file](#configuring-the-sshconfig-file)
+    - [Execute a single command using the key.](#execute-a-single-command-using-the-key)
 
 ## SSH Utiization
 
@@ -118,53 +118,53 @@ The key's randomart image is:
 
 Now you should have two files: one key with the `.pub` extension, which is the public key, and one without an extension, which is the private key.
 
-### Registrando a chave
+### Registering a SSH key
 ***
-Para utilizar as chaves de autenticação no `ssh` é preciso que chave pública esteja registradas dentro do arquivo `~/.ssh/authorized_keys`, para isso é possível usar o comando `ssh-copy-id` para facilitar esse processo, para isso será necessário usar o nome de usuário, IP e o arquivo da chave privada, como no exemplo abaixo:
+To use the authentication keys with `ssh`, the public key must be registered in the `~/.ssh/authorized_keys` file of the machine you want to access. To facilitate this process, you can use the `ssh-copy-id` command. For this, you will need to provide the username, IP address, and the path to the private key file, as shown in the example below:
 
 ```bash
-ssh-copy-id -i chave.pub user@192.160.0.164
+ssh-copy-id -i key.pub user@192.160.0.164
 ```
 
 > [!IMPORTANT]
-> Certifique-se de utilizar a chave pública no comando acima, a privada não deve ser compartilhada para nenhuma outra máquina.
+> Make sure to use the public key in the command above; the private key should not be shared with any other machine.
 
-Depois de confirmar com a senha do usuário escolhido sua chave deverá estar dentro do arquivo `~/.ssh/authorized_keys`.
+After confirming with the user's password, your key should be added to the `~/.ssh/authorized_keys` file.
 
-### Configurando o arquivo `~/.ssh/config`
+### Configuring the `~/.ssh/config` file
 ***
-Com a chave pública já dentro do `authorized_keys` da máquina desejada. É preciso configurar o arquivo `~/.ssh/config`.
+With the public key already inside the `authorized_keys` file of the desired machine, you need to configure **your** `~/.ssh/config` file.
 
 > [!WARNING]
-> Esse arquivo não é criado por padrão no sistema, portanto execute o comando `touch .ssh/config` para criá-lo.
+> This file is not created by default in the system, if needed, run the command `touch ~/.ssh/config` to create it.
 
-Para isso, adicione dentro dele o seguinte template customizando de acordo com a sua situação:
+To do it, add the following template to the file, customizing it according to your situation:
 
-```
-Host maquina_teste
+```bash
+Host test_machine            
 	HostName 192.160.0.164
 	User user
-	IdentityFile ~/.ssh/chave
+	IdentityFile ~/.ssh/private_key
 ```
 
 > [!NOTE]
-> - maquina_teste = Nome desejado para usar no ssh
-> - 192.160.0.164 = IP da máquina
-> - user = Usuário da máquina
-> - ~/.ssh/chave = Caminho da chave privada
+> - test_machine = Desired name to use in SSH
+> - 192.160.0.164 = IP of the machine that you want to connect
+> - user = Username to connect to
+> - ~/.ssh/chave = File path of the private key in your system
 
-Após adicionar o template com as informações corretas, já deve ser possível fazer ssh com o nome colocado, como no exemplo abaixo:
+After adding the template with the correct information, you should now be able to SSH using the specified name, as shown in the example below:
 
 ```bash
-ssh maquina_teste # Coloque o nome que colocou no ~/.ssh/config
+ssh test_machine # Use the name you configure in the ~/.ssh/config file
 ```
 
-### Executar apenas um comando com a chave
+### Execute a single command using the key.
 ***
-Também é possível utilizar o apenas um comando, para isso, apenas coloque o comando desejado no final do comando anteriormente introduzido, como no exemplo a seguir:
+It is also possible to use a single command. To do this, simply place the desired command at the end of the previously introduced command, as in the following example:
 
 ```bash
-ssh maquina_teste systemctl status grafana-server
+ssh test_machine systemctl status grafana-server
 ```
 
 
