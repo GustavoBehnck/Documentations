@@ -9,14 +9,9 @@
   - [Registering an SSH Key](#registering-an-ssh-key)
     - [Description](#description-1)
     - [Creating Authentication Keys](#creating-authentication-keys)
-<<<<<<< HEAD
     - [Registering a SSH key](#registering-a-ssh-key)
     - [Configuring the `~/.ssh/config` file](#configuring-the-sshconfig-file)
     - [Execute a single command using the key.](#execute-a-single-command-using-the-key)
-=======
-    - [Registering the public key](#registering-the-public-key)
-    - [Configurando o arquivo `~/.ssh/config`](#configurando-o-arquivo-sshconfig)
-    - [Executar apenas um comando com a chave](#executar-apenas-um-comando-com-a-chave)
 >>>>>>> 48539488c5ec6129ca7accc86ec3ca99d3fa0846
 
 ## SSH Utiization
@@ -124,30 +119,18 @@ The key's randomart image is:
 
 Now you should have two files: one key with the `.pub` extension, which is the public key, and one without an extension, which is the private key.
 
-<<<<<<< HEAD
 ### Registering a SSH key
 ***
 To use the authentication keys with `ssh`, the public key must be registered in the `~/.ssh/authorized_keys` file of the machine you want to access. To facilitate this process, you can use the `ssh-copy-id` command. For this, you will need to provide the username, IP address, and the path to the private key file, as shown in the example below:
-=======
-### Registering the public key
-***
-To use authentication keys in `ssh`, the public key must be registered in the `~/.ssh/authorized_keys` file. To simplify this process, you can use the `ssh-copy-id` command. For this, you will need the username, IP, and private key file, as shown in the example below:
->>>>>>> 48539488c5ec6129ca7accc86ec3ca99d3fa0846
 
 ```bash
 ssh-copy-id -i key.pub user@192.160.0.164
 ```
 
 > [!IMPORTANT]
-<<<<<<< HEAD
 > Make sure to use the public key in the command above; the private key should not be shared with any other machine.
 
 After confirming with the user's password, your key should be added to the `~/.ssh/authorized_keys` file.
-=======
-> Make sure to use the public key in the command above. The private key should not be shared with any other machine.
-
-After confirming with the chosen user's password, your key should be inside the `~/.ssh/authorized_keys` file of the other machine.
->>>>>>> 48539488c5ec6129ca7accc86ec3ca99d3fa0846
 
 ### Configuring the `~/.ssh/config` file
 ***
