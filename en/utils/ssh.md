@@ -12,7 +12,6 @@
     - [Registering a SSH key](#registering-a-ssh-key)
     - [Configuring the `~/.ssh/config` file](#configuring-the-sshconfig-file)
     - [Execute a single command using the key.](#execute-a-single-command-using-the-key)
->>>>>>> 48539488c5ec6129ca7accc86ec3ca99d3fa0846
 
 ## SSH Utiization
 
