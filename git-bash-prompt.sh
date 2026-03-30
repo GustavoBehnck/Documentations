@@ -33,7 +33,7 @@ git_branch() {
 # only shows last two folders
 export PROMPT_DIRTRIM=2
 
-PS1="\u@\h \[$OCHRE\]\w"
+PS1="[ \u - \h ] \[$BLUE\]\w"
 PS1+="\[\$(git_color)\]"
 PS1+="\$(git_branch)"
 PS1+="\[$GREEN\] \$\[$RESET\] "
